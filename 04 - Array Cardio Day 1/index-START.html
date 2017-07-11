@@ -29,31 +29,74 @@
 
     const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 
-    // Array.prototype.filter()
+    newInventors = inventors.filter((e, i, a)=> {
+      return (e.year < 1600 && e.year > 1499)
+
+    })
+    console.table(newInventors)
     // 1. Filter the list of inventors for those who were born in the 1500's
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    const firstLast = inventors.map((el, i, a) => {
+      return `${el.first} ${el.last}`
+    })
+
+    console.log(firstLast)
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const sorted = inventors.sort((a, b)=>{
+      return (a.passed + b.passed) - (a.year + b.year)
+    })
+    console.table(sorted)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+    const age = inventors.reduce((total, inventor) => {
+      return total + (inventor.passed - inventor.year)
+    }, 0)
+    console.log(age)
 
     // 5. Sort the inventors by years lived
+    const yearsLived = inventors.sort((a, b) => {
+      const last =  a.passed - a.year
+      const next = b.passed - b.year
+      return last > next ? -1 : 1;
+    })
+    console.table(yearsLived)
+  
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
+
+
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+   
+    
+    const sortedPeople = people.sort((a, b) => {
+      const [aLast, aFirst] = a.split(', ')
+      const [bLast, bFirst] = b.split(', ')
+      return aLast > bLast ? 1 : -1;
+    })
+    console.log(sortedPeople)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    const transportation = data.reduce(function(obj, item) {
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]+= 1;
+      return obj;
+    }, {});
+
+    console.log(transportation);
   </script>
 </body>
 </html>
