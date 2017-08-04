@@ -7,6 +7,18 @@
 </head>
 <body>
 <script>
+  const pressedArray = []
+  const konamiArray = 'josh'
+  window.addEventListener('keyup', (e) => {
+    console.log(e.key)
+    pressedArray.push(e.key)
+    pressedArray.splice(-konamiArray.length - 1, pressedArray.length - konamiArray.length)
+    if (pressedArray.join('').includes(konamiArray)) {
+      cornify_add()
+    }
+  })
+
+
 </script>
 </body>
 </html>
